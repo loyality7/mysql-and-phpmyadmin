@@ -39,6 +39,7 @@ echo "Creating MySQL user and database..."
 sudo mysql -e "CREATE USER '${USER}'@'%' IDENTIFIED BY '${PASSWORD}';"
 sudo mysql -e "CREATE DATABASE ${DB};"
 sudo mysql -e "GRANT ALL PRIVILEGES ON ${DB}.* TO '${USER}'@'%';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO '${USER}'@'%' WITH GRANT OPTION;"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
 # Print the username and password
@@ -79,7 +80,6 @@ fi
 
 # Final message
 echo "phpMyAdmin installed. Access it via http://IP/phpmyadmin"
-
 
 echo "MySQL User: ${USER}"
 echo "MySQL Password: ${PASSWORD}"
