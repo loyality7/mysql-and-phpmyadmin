@@ -47,6 +47,11 @@ sudo mysql -e "FLUSH PRIVILEGES;"
 echo "MySQL User: ${USER}"
 echo "MySQL Password: ${PASSWORD}"
 
+-------------------
+echo "You can Copy the Password and add it to PhpMyAdmin"
+sleep 15
+echo "Thanks For Your Patience "
+------------------------
 # Install phpMyAdmin
 echo "Installing phpMyAdmin and required PHP extensions..."
 sudo apt-get install -y phpmyadmin php-mbstring php-zip libapache2-mod-php php-gd php-json php-curl
