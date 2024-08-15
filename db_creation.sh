@@ -32,20 +32,20 @@ EOF
 # Generate a random password for the new MySQL user
 USER="newuser"
 PASSWORD=$(openssl rand -base64 12)
-DB="userdb"
 
-echo "Creating MySQL user and database..."
-# Create MySQL user with a random password and grant all privileges
+echo "Creating MySQL user and granting all privileges..."
+# Create MySQL user with a random password
 sudo mysql -e "CREATE USER '${USER}'@'%' IDENTIFIED BY '${PASSWORD}';"
-sudo mysql -e "CREATE DATABASE ${DB};"
-sudo mysql -e "GRANT ALL PRIVILEGES ON ${DB}.* TO '${USER}'@'%';"
+
+# Grant all privileges on all databases
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO '${USER}'@'%' WITH GRANT OPTION;"
+
+# Flush privileges to ensure the changes take effect
 sudo mysql -e "FLUSH PRIVILEGES;"
 
 # Print the username and password
 echo "MySQL User: ${USER}"
 echo "MySQL Password: ${PASSWORD}"
-echo "Database Name: ${DB}"
 
 # Install phpMyAdmin
 echo "Installing phpMyAdmin and required PHP extensions..."
@@ -83,4 +83,3 @@ echo "phpMyAdmin installed. Access it via http://IP/phpmyadmin"
 
 echo "MySQL User: ${USER}"
 echo "MySQL Password: ${PASSWORD}"
-echo "Database Name: ${DB}"
